@@ -16,6 +16,8 @@ kotlin {
     linuxX64()
     mingwX64()
 
+    applyDefaultHierarchyTemplate()
+
     // TODO: Add more supported platforms
 
     sourceSets {
@@ -30,18 +32,6 @@ kotlin {
             dependencies {
                 implementation(libs.kotlin.test)
             }
-        }
-    }
-}
-
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            groupId = project.group.toString()
-            artifactId = project.name
-            version = project.version.toString()
-
-            from(components["kotlin"])
         }
     }
 }
