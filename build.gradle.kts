@@ -3,7 +3,7 @@ plugins {
     `maven-publish`
 }
 
-group = "org.chorus_oss.varlen"
+group = "org.chorus_oss"
 version = "1.0-SNAPSHOT"
 description = "VarLen"
 
