@@ -1,0 +1,21 @@
+package org.chorus_oss.varlen.types
+
+import kotlinx.io.Buffer
+import org.chorus_oss.varlen.VarCodec
+import org.chorus_oss.varlen.VarLen
+
+val VarLen.Short by lazy {
+    object : VarCodec<Short, UShort> {
+        override fun serialize(value: Short, stream: Buffer) {
+            VarLen.UShort.serialize(this.zigzag(value), stream)
+        }
+
+        override fun deserialize(stream: Buffer): Short {
+            return VarLen.UShort.zigzag(VarLen.UShort.deserialize(stream))
+        }
+
+        override fun zigzag(value: Short): UShort {
+            return ((value.toInt() shl 1) xor (value.toInt() shr 15)).toUShort()
+        }
+    }
+}
