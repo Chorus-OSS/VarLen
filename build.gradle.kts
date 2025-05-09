@@ -1,5 +1,6 @@
 plugins {
     kotlin("multiplatform") version "2.1.10"
+    `maven-publish`
 }
 
 group = "org.chorus_oss.varlen"
@@ -29,6 +30,18 @@ kotlin {
             dependencies {
                 implementation(libs.kotlin.test)
             }
+        }
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = project.group.toString()
+            artifactId = project.name
+            version = project.version.toString()
+
+            from(components["kotlin"])
         }
     }
 }
