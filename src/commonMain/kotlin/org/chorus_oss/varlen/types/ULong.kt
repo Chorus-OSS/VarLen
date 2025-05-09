@@ -40,3 +40,11 @@ val VarLen.ULong by lazy {
         }
     }
 }
+
+fun Buffer.writeULongVar(long: ULong) {
+    VarLen.ULong.serialize(long, this)
+}
+
+fun Buffer.readULongVar(): ULong {
+    return VarLen.ULong.deserialize(this)
+}

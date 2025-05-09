@@ -40,3 +40,11 @@ val VarLen.UShort by lazy {
         }
     }
 }
+
+fun Buffer.writeUShortVar(short: UShort) {
+    VarLen.UShort.serialize(short, this)
+}
+
+fun Buffer.readUShortVar(): UShort {
+    return VarLen.UShort.deserialize(this)
+}

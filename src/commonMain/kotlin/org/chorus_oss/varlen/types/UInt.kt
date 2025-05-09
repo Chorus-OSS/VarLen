@@ -40,3 +40,11 @@ val VarLen.UInt by lazy {
         }
     }
 }
+
+fun Buffer.writeUIntVar(int: UInt) {
+    VarLen.UInt.serialize(int, this)
+}
+
+fun Buffer.readUIntVar(): UInt {
+    return VarLen.UInt.deserialize(this)
+}

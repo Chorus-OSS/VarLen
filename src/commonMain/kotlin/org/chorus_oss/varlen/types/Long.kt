@@ -19,3 +19,11 @@ val VarLen.Long by lazy {
         }
     }
 }
+
+fun Buffer.writeLongVar(long: Long) {
+    VarLen.Long.serialize(long, this)
+}
+
+fun Buffer.readLongVar(): Long {
+    return VarLen.Long.deserialize(this)
+}

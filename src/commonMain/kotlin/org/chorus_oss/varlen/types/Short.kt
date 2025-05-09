@@ -19,3 +19,11 @@ val VarLen.Short by lazy {
         }
     }
 }
+
+fun Buffer.writeShortVar(short: Short) {
+    VarLen.Short.serialize(short, this)
+}
+
+fun Buffer.readShortVar(): Short {
+    return VarLen.Short.deserialize(this)
+}

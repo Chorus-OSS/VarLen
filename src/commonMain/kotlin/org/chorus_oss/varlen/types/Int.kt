@@ -19,3 +19,11 @@ val VarLen.Int by lazy {
         }
     }
 }
+
+fun Buffer.writeIntVar(int: Int) {
+    VarLen.Int.serialize(int, this)
+}
+
+fun Buffer.readIntVar(): Int {
+    return VarLen.Int.deserialize(this)
+}
