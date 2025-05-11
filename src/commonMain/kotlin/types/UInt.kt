@@ -6,7 +6,7 @@ import org.chorus_oss.varlen.VarLen
 
 val VarLen.UInt by lazy {
     object : VarCodec<UInt, Int> {
-        override fun serialize(value: UInt, stream: Buffer) {
+        override fun serialize(value: UInt, stream: Sink) {
             var mValue = value
 
             while (mValue >= 128u) {
@@ -19,7 +19,7 @@ val VarLen.UInt by lazy {
             stream.writeByte((mValue and 127u).toByte())
         }
 
-        override fun deserialize(stream: Buffer): UInt {
+        override fun deserialize(stream: Source): UInt {
             var shift = 0
             var decoded = 0u
             var next: Byte
@@ -41,10 +41,10 @@ val VarLen.UInt by lazy {
     }
 }
 
-fun Buffer.writeUIntVar(int: UInt) {
+fun Sink.writeUIntVar(int: UInt) {
     VarLen.UInt.serialize(int, this)
 }
 
-fun Buffer.readUIntVar(): UInt {
+fun Source.readUIntVar(): UInt {
     return VarLen.UInt.deserialize(this)
 }
