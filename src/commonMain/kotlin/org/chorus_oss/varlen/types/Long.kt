@@ -1,6 +1,5 @@
 package org.chorus_oss.varlen.types
 
-import kotlinx.io.Buffer
 import kotlinx.io.Sink
 import kotlinx.io.Source
 import org.chorus_oss.varlen.VarCodec
